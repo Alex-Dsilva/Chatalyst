@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const { connection } = require("./config/db");
+const UserRouter = require("./routes/user.routes");
+const AnalyticsRouter = require("./routes/analytics.routes");
+const PostRouter = require("./routes/post.routes");
 
 // config dot env file
 dotenv.config();
@@ -19,6 +22,10 @@ app.use(cors());
 app.get("/api/v1/check", (req, res) => {
     res.send("welcome");
 });
+
+app.use("/api/v1/users",UserRouter)
+app.use("/api/v1/analytics", AnalyticsRouter)
+app.use("/api/v1/posts", PostRouter)
 
 
 
